@@ -24,7 +24,7 @@ chat.Subscribe((data, meta) => {
     Console.WriteLine($"[{meta.Channel}] {data}");
 });
 
-chat.Publish(new { text = "Hello from C#!" });
+await chat.PublishAsync(new { text = "Hello from C#!" });
 
 await Task.Delay(-1); // keep alive
 ```
