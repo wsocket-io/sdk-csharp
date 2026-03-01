@@ -2,13 +2,13 @@
 
 Official C# / .NET SDK for [wSocket](https://wsocket.io) — Realtime Pub/Sub over WebSockets.
 
-[![NuGet](https://img.shields.io/nuget/v/wSocket)](https://www.nuget.org/packages/wSocket)
+[![NuGet](https://img.shields.io/nuget/v/WSocket.IO)](https://www.nuget.org/packages/WSocket.IO)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Installation
 
 ```bash
-dotnet add package wSocket
+dotnet add package WSocket.IO
 ```
 
 ## Quick Start
