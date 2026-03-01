@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>wSocket</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>wSocket</Authors>
+    <Description>wSocket .NET SDK — Realtime Pub/Sub client</Description>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>wSocket</RootNamespace>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://wsocket.io</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/wsocket-io/sdk-csharp</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>websocket;pubsub;realtime;wsocket</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
