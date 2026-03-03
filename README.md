@@ -16,7 +16,7 @@ dotnet add package WSocket.IO
 ```csharp
 using wSocket;
 
-var client = new Client("wss://your-server.com", "your-api-key");
+var client = new Client("wss://node00.wsocket.online", "your-api-key");
 await client.ConnectAsync();
 
 var chat = client.Channel("chat:general");
