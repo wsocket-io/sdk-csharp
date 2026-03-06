@@ -1,0 +1,22 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet restore
+        working-directory: wSocket
+      - run: dotnet build -c Release --no-restore
+        working-directory: wSocket
+      - run: dotnet pack -c Release --no-build -o nupkgs
+        working-directory: wSocket
+      - name: Publish to NuGet
+        run: dotnet nuget push "wSocket/nupkgs/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
