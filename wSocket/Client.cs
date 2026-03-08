@@ -555,6 +555,38 @@ public class PushClient
         return await ApiAsync("POST", $"/api/admin/apps/{_appId}/push/send",
             new { broadcast = true, title, body });
     }
+
+    /// <summary>Add a channel to a member's push subscriptions.</summary>
+    public async Task<JsonElement> AddChannelAsync(string memberId, string channel)
+    {
+        return await ApiAsync("POST", "/api/push/channels/add",
+            new { memberId, channel });
+    }
+
+    /// <summary>Remove a channel from a member's push subscriptions.</summary>
+    public async Task<JsonElement> RemoveChannelAsync(string memberId, string channel)
+    {
+        return await ApiAsync("POST", "/api/push/channels/remove",
+            new { memberId, channel });
+    }
+
+    /// <summary>Get the VAPID public key for this app.</summary>
+    public async Task<string?> GetVapidKeyAsync()
+    {
+        var res = await ApiAsync("GET", "/api/push/vapid-key");
+        return res.TryGetProperty("vapidPublicKey", out var v) ? v.GetString() : null;
+    }
+
+    /// <summary>List push subscriptions with optional filters.</summary>
+    public async Task<JsonElement> ListSubscriptionsAsync(string? memberId = null, string? platform = null, int? limit = null)
+    {
+        var qp = new List<string>();
+        if (memberId != null) qp.Add($"memberId={memberId}");
+        if (platform != null) qp.Add($"platform={platform}");
+        if (limit != null) qp.Add($"limit={limit}");
+        var qs = qp.Count > 0 ? "?" + string.Join("&", qp) : "";
+        return await ApiAsync("GET", $"/api/push/subscriptions{qs}");
+    }
 }
 
 // ─── PubSub Namespace ───────────────────────────────────────
