@@ -535,6 +535,13 @@ public class PushClient
         return res.GetProperty("removed").GetInt32();
     }
 
+    /// <summary>Delete a specific push subscription by its ID.</summary>
+    public async Task<bool> DeleteSubscriptionAsync(string subscriptionId)
+    {
+        var res = await ApiAsync("DELETE", $"/api/admin/apps/{_appId}/push/subscriptions/{subscriptionId}");
+        return res.TryGetProperty("deleted", out var d) && d.GetBoolean();
+    }
+
     /// <summary>Send a push notification to a specific member.</summary>
     public async Task<JsonElement> SendToMemberAsync(string memberId, string title, string? body = null)
     {
