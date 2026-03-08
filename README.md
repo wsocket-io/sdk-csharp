@@ -61,6 +61,25 @@ chat.OnHistory(result => {
 chat.History(new HistoryOptions { Limit = 50 });
 ```
 
+## Push Notifications
+
+```csharp
+var push = new WSocketIO.PushClient("https://your-server.com", "your-api-key", "your-app-id");
+
+// Register & send
+await push.RegisterFCMAsync("device-token", "user-123");
+await push.SendToMemberAsync("user-123", new { title = "Hello" });
+await push.BroadcastAsync(new { title = "News" });
+
+// Channel targeting
+await push.AddChannelAsync("subscription-id", "alerts");
+await push.RemoveChannelAsync("subscription-id", "alerts");
+
+// VAPID key & subscriptions
+var vapidKey = await push.GetVapidKeyAsync();
+var subs = await push.ListSubscriptionsAsync("user-123");
+```
+
 ## Requirements
 
 - .NET 8.0+
